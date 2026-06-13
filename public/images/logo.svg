@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" width="400" height="420">
+  <!-- Pixel scatter effect (left side) -->
+  <rect x="52" y="90" width="22" height="22" rx="3" fill="#4CAF50"/>
+  <rect x="30" y="118" width="16" height="16" rx="2" fill="#4CAF50"/>
+  <rect x="52" y="118" width="22" height="22" rx="3" fill="#4CAF50"/>
+  <rect x="30" y="144" width="16" height="16" rx="2" fill="#4CAF50"/>
+  <rect x="52" y="144" width="22" height="22" rx="3" fill="#4CAF50"/>
+  <rect x="78" y="144" width="14" height="14" rx="2" fill="#4CAF50" opacity="0.6"/>
+
+  <!-- Sheep body (fluffy green wool) -->
+  <!-- Large central wool blob -->
+  <ellipse cx="215" cy="165" rx="110" ry="100" fill="#4CAF50"/>
+
+  <!-- Additional wool bumps -->
+  <circle cx="130" cy="150" r="55" fill="#4CAF50"/>
+  <circle cx="160" cy="110" r="50" fill="#4CAF50"/>
+  <circle cx="210" cy="95" r="52" fill="#4CAF50"/>
+  <circle cx="260" cy="108" r="48" fill="#4CAF50"/>
+  <circle cx="295" cy="145" r="46" fill="#4CAF50"/>
+  <circle cx="290" cy="190" r="44" fill="#4CAF50"/>
+  <circle cx="140" cy="195" r="46" fill="#4CAF50"/>
+
+  <!-- Left ear (dark teal) -->
+  <ellipse cx="148" cy="128" rx="18" ry="30" fill="#1B5E5E" transform="rotate(-30 148 128)"/>
+
+  <!-- Right ear (dark teal) -->
+  <ellipse cx="298" cy="122" rx="18" ry="30" fill="#1B5E5E" transform="rotate(25 298 122)"/>
+
+  <!-- Sheep face (orange/tan) -->
+  <ellipse cx="230" cy="200" rx="65" ry="72" fill="#F4A235"/>
+
+  <!-- Eye -->
+  <circle cx="248" cy="185" r="10" fill="#1B5E5E"/>
+  <circle cx="251" cy="182" r="3" fill="white"/>
+
+  <!-- Nose/mouth -->
+  <ellipse cx="238" cy="228" rx="10" ry="6" fill="#E08A20"/>
+  <path d="M233 228 Q238 235 243 228" stroke="#1B5E5E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- FARMY text -->
+  <text x="200" y="345" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="72" fill="#1B5E5E" text-anchor="middle" letter-spacing="4">FARMY</text>
+</svg>

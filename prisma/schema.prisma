@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  image       String
+  description String
+  active      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  products    Product[]
+}
+
+model Product {
+  id                    Int            @id @default(autoincrement())
+  name                  String
+  slug                  String         @unique
+  description           String
+  shortDescription      String?
+  image                 String
+  categoryId            Int
+  category              Category       @relation(fields: [categoryId], references: [id])
+  colors                ProductColor[]
+  images                ProductImage[]
+  minOrderQuantity      Int            @default(1)
+  estimatedDeliveryDays Int            @default(7)
+  active                Boolean        @default(true)
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+}
+
+model ProductColor {
+  id        Int     @id @default(autoincrement())
+  name      String
+  colorCode String?
+  productId Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  url       String
+  sortOrder Int     @default(0)
+  productId Int
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Admin {
+  id           Int    @id @default(autoincrement())
+  username     String @unique
+  passwordHash String
+}
