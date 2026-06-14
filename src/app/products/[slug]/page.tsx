@@ -68,12 +68,12 @@ export default async function ProductDetailPage({
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
         {/* Image section */}
         <div className="space-y-3">
-          <div className="relative aspect-square overflow-hidden rounded-3xl bg-secondary shadow-md">
+          <div className="relative aspect-square overflow-hidden rounded-3xl bg-white shadow-md">
             <Image
               src={galleryImages[0]}
               alt={product.name}
               fill
-              className="object-cover"
+              className="object-contain p-4"
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
@@ -83,13 +83,13 @@ export default async function ProductDetailPage({
               {galleryImages.slice(1).map((url, index) => (
                 <div
                   key={url}
-                  className="relative aspect-square overflow-hidden rounded-xl bg-secondary"
+                  className="relative aspect-square overflow-hidden rounded-xl bg-white"
                 >
                   <Image
                     src={url}
                     alt={`${product.name} ${index + 2}`}
                     fill
-                    className="object-cover"
+                    className="object-contain p-2"
                     sizes="100px"
                   />
                 </div>
