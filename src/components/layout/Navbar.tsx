@@ -15,7 +15,7 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -87,8 +87,12 @@ export function Navbar() {
         </button>
       </div>
 
-      {mobileOpen && (
-        <div className="border-t border-border bg-card px-4 py-4 md:hidden">
+      <div
+        className={`border-t border-border bg-card px-4 md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? "max-h-96 py-4 opacity-100" : "max-h-0 py-0 opacity-0"
+        }`}
+      >
+        <div className="">
           <nav className="flex flex-col gap-3">
             {NAV_LINKS.map((link) => (
               <Link
@@ -117,7 +121,7 @@ export function Navbar() {
             <WhatsAppButton className="mt-2 w-full" />
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }

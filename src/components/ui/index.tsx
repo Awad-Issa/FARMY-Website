@@ -135,7 +135,7 @@ export function CategoryCard({
           alt={name}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 25vw"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
         />
         {comingSoon && (
           <span className="absolute left-3 top-3 rounded-full bg-accent px-3 py-1 text-xs font-medium text-white">

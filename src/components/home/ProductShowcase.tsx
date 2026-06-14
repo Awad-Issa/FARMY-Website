@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getFeaturedProducts } from "@/lib/services/catalog";
+import type { ProductWithCategory } from "@/lib/services/catalog";
 
-export async function ProductShowcase() {
-  const products = await getFeaturedProducts(8);
+type Props = { products: ProductWithCategory[] };
+
+export function ProductShowcase({ products }: Props) {
 
   return (
     <section dir="rtl" className="bg-[#f5f5f5]">
@@ -31,7 +32,7 @@ export async function ProductShowcase() {
       {products.length > 0 ? (
         <div className="px-4 pb-10 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
-            {products.map((product) => (
+            {products.map((product, index) => (
               <Link
                 key={product.id}
                 href={`/products/${product.slug}`}
@@ -43,6 +44,7 @@ export async function ProductShowcase() {
                     src={product.image}
                     alt={product.name}
                     fill
+                    priority={index < 4 && !!product.image}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />

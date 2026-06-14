@@ -32,9 +32,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ url: `/uploads/${filename}` });
     }
 
-    const token = process.env.BLOB_READ_WRITE_TOKEN;
-    console.log("[upload] token present:", !!token, "token prefix:", token?.slice(0, 10));
-
     const { put } = await import("@vercel/blob");
     const blob = await put(file.name, file, { access: "public" });
     return NextResponse.json({ url: blob.url });

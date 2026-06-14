@@ -1,8 +1,10 @@
 import { SectionHeader, CategoryCard } from "@/components/ui";
-import { getAllCategories } from "@/lib/services/catalog";
+import type { Prisma } from "@prisma/client";
 
-export async function CategoriesSection() {
-  const categories = await getAllCategories();
+type Category = Prisma.CategoryGetPayload<{ include: { _count: { select: { products: true } } } }>;
+type Props = { categories: Category[] };
+
+export function CategoriesSection({ categories }: Props) {
 
   return (
     <section className="py-16 md:py-20">
