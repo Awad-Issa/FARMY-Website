@@ -46,7 +46,7 @@ export async function getFeaturedProducts(limit = 6) {
       prisma.product.findMany({
         where: { active: true },
         include: { category: true, colors: true },
-        orderBy: { createdAt: "desc" },
+        orderBy: [{ categoryId: "asc" }, { id: "asc" }],
         take: limit,
       }),
     []
