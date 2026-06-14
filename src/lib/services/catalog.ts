@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { safeQuery } from "@/lib/db";
 import { PRODUCTS_PER_PAGE } from "@/lib/constants";
-import type { Prisma } from "@/generated/prisma/client";
+import type { Prisma } from "@prisma/client";
 
 export type ProductWithCategory = Prisma.ProductGetPayload<{
   include: { category: true };
