@@ -83,7 +83,7 @@ export async function getProducts(params: {
         prisma.product.findMany({
           where,
           include: { category: true, colors: true },
-          orderBy: { createdAt: "desc" },
+          orderBy: [{ categoryId: "asc" }, { id: "asc" }],
           skip,
           take: PRODUCTS_PER_PAGE,
         }),

@@ -24,7 +24,6 @@ export function ProductsFilter({
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const [search, setSearch] = useState(initialSearch);
-  const [category, setCategory] = useState(initialCategory);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function applyFilters(nextSearch: string, nextCategory: string) {
@@ -34,21 +33,15 @@ export function ProductsFilter({
     if (nextCategory) params.set("category", nextCategory);
     else params.delete("category");
     params.delete("page");
-
     startTransition(() => {
       router.push(`/products?${params.toString()}`);
     });
   }
 
   return (
-    <form
-      className="rounded-2xl bg-card p-4 shadow-sm md:p-6"
-      onSubmit={(e) => {
-        e.preventDefault();
-        applyFilters(search, category);
-      }}
-    >
-      <div className="grid gap-4 md:grid-cols-[1fr_auto_auto]">
+    <div className="space-y-4">
+      {/* Search */}
+      <div className="relative">
         <input
           type="search"
           value={search}
@@ -56,31 +49,47 @@ export function ProductsFilter({
             const val = e.target.value;
             setSearch(val);
             if (debounceRef.current) clearTimeout(debounceRef.current);
-            debounceRef.current = setTimeout(() => applyFilters(val, category), 300);
+            debounceRef.current = setTimeout(
+              () => applyFilters(val, initialCategory),
+              300
+            );
           }}
           placeholder="ابحث عن منتج..."
-          className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-primary"
+          className="w-full rounded-2xl border border-border bg-card px-5 py-3.5 text-sm outline-none focus:border-primary shadow-sm"
         />
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:border-primary"
-        >
-          <option value="">جميع الفئات</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.slug}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
-        <button
-          type="submit"
-          disabled={isPending}
-          className="rounded-xl bg-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary-light disabled:opacity-60"
-        >
-          {isPending ? "جاري البحث..." : "بحث"}
-        </button>
+        {isPending && (
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xs text-muted">
+            جاري البحث...
+          </span>
+        )}
       </div>
-    </form>
+
+      {/* Category Tabs */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => applyFilters(search, "")}
+          className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+            !initialCategory
+              ? "bg-primary text-white shadow-sm"
+              : "bg-card border border-border text-muted hover:border-primary/40 hover:text-foreground"
+          }`}
+        >
+          الكل
+        </button>
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            onClick={() => applyFilters(search, cat.slug)}
+            className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+              initialCategory === cat.slug
+                ? "bg-primary text-white shadow-sm"
+                : "bg-card border border-border text-muted hover:border-primary/40 hover:text-foreground"
+            }`}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
