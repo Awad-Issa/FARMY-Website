@@ -77,8 +77,8 @@ export async function createProductAction(formData: FormData) {
   const description = String(formData.get("description") ?? "");
   const shortDescription = String(formData.get("shortDescription") ?? "");
   const image = String(formData.get("image") ?? "");
-  const firstCategory = await prisma.category.findFirst({ select: { id: true } });
-  const categoryId = firstCategory?.id ?? 1;
+  const categoryIdRaw = Number(formData.get("categoryId"));
+  const categoryId = categoryIdRaw || (await prisma.category.findFirst({ select: { id: true } }))?.id ?? 1;
   const active = formData.get("active") === "on";
   const colorsRaw = String(formData.get("colors") ?? "");
 
@@ -116,8 +116,8 @@ export async function updateProductAction(id: number, formData: FormData) {
   const description = String(formData.get("description") ?? "");
   const shortDescription = String(formData.get("shortDescription") ?? "");
   const image = String(formData.get("image") ?? "");
-  const firstCategory = await prisma.category.findFirst({ select: { id: true } });
-  const categoryId = firstCategory?.id ?? 1;
+  const categoryIdRaw = Number(formData.get("categoryId"));
+  const categoryId = categoryIdRaw || (await prisma.category.findFirst({ select: { id: true } }))?.id ?? 1;
   const active = formData.get("active") === "on";
   const colorsRaw = String(formData.get("colors") ?? "");
 

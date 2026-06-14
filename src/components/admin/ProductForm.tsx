@@ -65,6 +65,24 @@ export function ProductForm({ action, categories, product }: ProductFormProps) {
           className="w-full rounded-xl border border-border px-4 py-3 text-sm outline-none focus:border-primary"
         />
       </div>
+      {categories && categories.length > 0 && (
+        <div>
+          <label className="mb-1 block text-sm font-medium">التصنيف</label>
+          <select
+            name="categoryId"
+            defaultValue={product?.categoryId ?? ""}
+            required
+            className="w-full rounded-xl border border-border px-4 py-3 text-sm outline-none focus:border-primary"
+          >
+            <option value="" disabled>اختر تصنيفاً</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
       <ImageUploadField defaultValue={product?.image} />
       <div>
         <label className="mb-1 block text-sm font-medium">الألوان</label>
