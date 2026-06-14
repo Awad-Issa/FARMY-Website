@@ -1,6 +1,6 @@
-import { HeroSection } from "@/components/home/HeroSection";
+import { ProductShowcase } from "@/components/home/ProductShowcase";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
-import { FeaturedProductsSection } from "@/components/home/FeaturedProductsSection";
+import { SoftwareBanner } from "@/components/home/SoftwareBanner";
 import { AboutSection } from "@/components/home/AboutSection";
 
 export const dynamic = "force-dynamic";
@@ -8,9 +8,9 @@ export const dynamic = "force-dynamic";
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
+      <ProductShowcase />
+      <SoftwareBanner />
       <CategoriesSection />
-      <FeaturedProductsSection />
       <AboutSection />
     </>
   );

@@ -49,6 +49,15 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://farmy-web.vercel.app/ar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+          >
+            <span className="text-xs">✦</span>
+            نظام الإدارة
+          </a>
         </nav>
 
         <div className="hidden md:block">
@@ -96,6 +105,15 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
+            <a
+              href="https://farmy-web.vercel.app/ar"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2 text-sm font-semibold text-primary"
+            >
+              <span>✦</span>
+              نظام إدارة المزارع
+            </a>
             <WhatsAppButton className="mt-2 w-full" />
           </nav>
         </div>
