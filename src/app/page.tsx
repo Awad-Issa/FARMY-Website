@@ -6,6 +6,7 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { AdvantagesSection } from "@/components/home/AdvantagesSection";
 import { ComparisonSection } from "@/components/home/ComparisonSection";
 import { LaserPrintSection } from "@/components/home/LaserPrintSection";
+import { FaqSection } from "@/components/home/FaqSection";
 import { getFeaturedProducts, getAllCategories } from "@/lib/services/catalog";
 
 export const revalidate = 60;
@@ -26,6 +27,7 @@ export default async function HomePage() {
       <ComparisonSection />
       <LaserPrintSection />
       <AboutSection />
+      <FaqSection />
     </>
   );
 }

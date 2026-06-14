@@ -1,49 +1,62 @@
+import Image from "next/image";
 import { Button } from "@/components/ui";
 import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-white">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(22,101,52,0.07),transparent)]" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
-      </div>
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Background image */}
+      <Image
+        src="/hero-bg.jpg"
+        alt="مزرعة خضراء مع أغنام وأبقار"
+        fill
+        priority
+        quality={75}
+        className="object-cover object-center"
+        sizes="100vw"
+      />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-20 text-center sm:px-6 md:py-32 lg:px-8">
-        <div className="flex items-center gap-2 rounded-full border border-primary/20 bg-secondary px-4 py-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-          <span className="text-xs font-semibold text-primary tracking-wide">FARMY — Agricultural & Livestock Solutions</span>
+      {/* Dark overlay with green tint */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
+      <div className="absolute inset-0 bg-green-950/30" />
+
+      {/* Bottom fade for smooth transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+
+      <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6 md:py-36 lg:px-8 w-full">
+        <div className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+          <span className="text-xs font-semibold text-white/90 tracking-wide">FARMY — Agricultural & Livestock Solutions</span>
         </div>
 
-        <div className="rounded-md bg-amber-50 border border-amber-200 px-5 py-2.5 flex items-center gap-2">
-          <span className="text-amber-600 text-sm">🔥</span>
-          <span className="text-sm font-bold text-amber-700 tracking-wide">عرض الإطلاق — خصم 50% على جميع المنتجات</span>
+        <div className="rounded-md bg-amber-500/20 border border-amber-400/40 backdrop-blur-sm px-5 py-2.5 flex items-center gap-2">
+          <span className="text-amber-400 text-sm">🔥</span>
+          <span className="text-sm font-bold text-amber-300 tracking-wide">عرض الإطلاق — خصم 50% على جميع المنتجات</span>
         </div>
 
-        <h1 className="max-w-3xl text-4xl font-bold leading-tight text-foreground md:text-5xl lg:text-6xl">
+        <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl drop-shadow-lg">
           حلول ذكية للثروة الحيوانية{" "}
-          <span className="text-primary">والزراعة</span>
+          <span className="text-green-400">والزراعة</span>
         </h1>
-        <p className="max-w-xl text-base text-muted md:text-lg leading-relaxed">
+        <p className="max-w-xl text-base text-white/80 md:text-lg leading-relaxed drop-shadow">
           نوفر منتجات عالية الجودة للمزارع ومربي الأغنام والأبقار مع إمكانية
           التخصيص والطباعة حسب الطلب.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 pt-2">
           <Button href="/products">تصفح المنتجات</Button>
-          <WhatsAppButton variant="outline" />
+          <WhatsAppButton variant="outline" className="border-white/40 text-white hover:bg-white/10" />
         </div>
 
         {/* Stats strip */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-8 border-t border-border pt-8 w-full max-w-2xl">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-8 border-t border-white/20 pt-8 w-full max-w-2xl">
           {[
             { num: "TPU", label: "جودة مواد عالمية" },
             { num: "50%", label: "خصم عرض الإطلاق" },
             { num: "∞", label: "تخصيص كامل" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col items-center gap-0.5">
-              <span className="text-2xl font-bold text-primary">{stat.num}</span>
-              <span className="text-xs text-muted">{stat.label}</span>
+              <span className="text-2xl font-bold text-green-400 drop-shadow">{stat.num}</span>
+              <span className="text-xs text-white/70">{stat.label}</span>
             </div>
           ))}
         </div>

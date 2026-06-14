@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/whatsapp/FloatingWhatsApp";
+import { BackToTop } from "@/components/ui/BackToTop";
 import { createPageMetadata } from "@/lib/metadata";
 import "./globals.css";
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingWhatsApp />
+        <BackToTop />
       </body>
     </html>
   );
