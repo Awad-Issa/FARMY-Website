@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPageMetadata } from "@/lib/metadata";
+import { SITE_URL } from "@/lib/constants";
 import { getProductBySlug } from "@/lib/services/catalog";
 import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
 
@@ -40,7 +41,7 @@ export default async function ProductDetailPage({
       ? product.images.map((img) => img.url)
       : [product.image];
 
-  const productUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/products/${product.slug}`;
+  const productUrl = `${SITE_URL}/products/${product.slug}`;
   const whatsappMessage = [
     `مرحباً، أود الاستفسار عن المنتج التالي:`,
     ``,

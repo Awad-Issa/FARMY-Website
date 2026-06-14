@@ -32,8 +32,11 @@ body {
   color: var(--foreground);
   font-family: var(--font-arabic), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
+

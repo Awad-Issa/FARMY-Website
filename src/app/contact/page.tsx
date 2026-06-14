@@ -63,7 +63,7 @@ export default function ContactPage() {
           >
             <h3 className="font-semibold text-primary">واتساب</h3>
             <p className="mt-2 text-sm text-muted" dir="ltr">
-              +{WHATSAPP_NUMBER}
+              +{WHATSAPP_NUMBER.replace(/^\+/, "")}
             </p>
           </a>
         </div>

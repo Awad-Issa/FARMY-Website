@@ -9,7 +9,7 @@ export const FACEBOOK_URL =
 export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@farmy.com";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://farmy-website.vercel.app";
 
 export const PRODUCTS_PER_PAGE = 12;
 
