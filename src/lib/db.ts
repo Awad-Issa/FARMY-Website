@@ -11,9 +11,7 @@ export async function safeQuery<T>(
   try {
     return await query();
   } catch (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.error("Database query failed:", error);
-    }
+    console.error("Database query failed:", error);
     return fallback;
   }
 }
