@@ -31,7 +31,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ url: `/uploads/${filename}` });
   }
 
-  const { put } = await import("@vercel/blob");
-  const blob = await put(file.name, file, { access: "public" });
-  return NextResponse.json({ url: blob.url });
+  try {
+    const { put } = await import("@vercel/blob");
+    const blob = await put(file.name, file, { access: "public" });
+    return NextResponse.json({ url: blob.url });
+  } catch (err) {
+    console.error("[upload] blob error:", err);
+    return NextResponse.json(
+      { error: String(err) },
+      { status: 500 }
+    );
+  }
 }
