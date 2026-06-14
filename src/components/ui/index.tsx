@@ -95,12 +95,12 @@ export function ProductCard({
   return (
     <Link href={`/products/${slug}`} className="group block">
       <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 group-hover:shadow-md group-hover:border-primary/20 group-hover:-translate-y-0.5">
-        <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+        <div className="relative aspect-[4/3] overflow-hidden bg-white">
           <Image
             src={image}
             alt={name}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
           />
           <span className="absolute top-3 right-3 rounded-full bg-red-500 text-white text-xs font-bold px-2.5 py-1 shadow">
