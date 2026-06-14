@@ -7,7 +7,7 @@ export const WHATSAPP_NUMBER =
 export const FACEBOOK_URL =
   process.env.NEXT_PUBLIC_FACEBOOK_URL ?? "https://facebook.com/farmy";
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@farmy.com";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "awadissa403@gmail.com";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://farmy-website.vercel.app";
 
