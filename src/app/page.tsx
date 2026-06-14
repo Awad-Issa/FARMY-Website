@@ -1,3 +1,4 @@
+import { HeroSection } from "@/components/home/HeroSection";
 import { ProductShowcase } from "@/components/home/ProductShowcase";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
 import { SoftwareBanner } from "@/components/home/SoftwareBanner";
@@ -17,6 +18,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <HeroSection />
       <ProductShowcase products={products} />
       <SoftwareBanner />
       <CategoriesSection categories={categories} />

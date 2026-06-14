@@ -20,13 +20,13 @@ export function Button({
   type = "button",
 }: ButtonProps) {
   const styles = cn(
-    "inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-medium transition-all duration-200",
+    "inline-flex items-center justify-center rounded-lg px-6 py-2.5 text-sm font-semibold tracking-wide transition-all duration-200",
     variant === "primary" &&
-      "bg-primary text-white shadow-md hover:bg-primary-light hover:shadow-lg",
+      "bg-primary text-white shadow-sm hover:bg-primary-light hover:shadow-md active:scale-95",
     variant === "secondary" &&
-      "bg-secondary text-primary hover:bg-secondary/80",
+      "bg-secondary text-primary border border-primary/20 hover:bg-secondary/70",
     variant === "outline" &&
-      "border-2 border-primary text-primary hover:bg-primary/5",
+      "border-2 border-primary text-primary hover:bg-primary hover:text-white active:scale-95",
     className
   );
 
@@ -53,14 +53,14 @@ type SectionHeaderProps = {
 
 export function SectionHeader({ title, subtitle, centered = true }: SectionHeaderProps) {
   return (
-    <div className={cn("mb-10", centered && "text-center")}>
-      <h2 className="text-2xl font-bold text-primary md:text-3xl">{title}</h2>
+    <div className={cn("mb-12", centered && "text-center")}>
+      <h2 className="text-2xl font-bold text-foreground md:text-3xl tracking-tight">{title}</h2>
       <div className={cn("mt-3 flex gap-1", centered ? "justify-center" : "")}>
-        <span className="h-1 w-8 rounded-full bg-primary" />
-        <span className="h-1 w-3 rounded-full bg-accent" />
+        <span className="h-0.5 w-10 rounded-full bg-primary" />
+        <span className="h-0.5 w-4 rounded-full bg-accent" />
       </div>
       {subtitle && (
-        <p className="mx-auto mt-4 max-w-2xl text-muted">{subtitle}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-muted text-sm md:text-base">{subtitle}</p>
       )}
     </div>
   );
@@ -94,7 +94,7 @@ export function ProductCard({
 
   return (
     <Link href={`/products/${slug}`} className="group block">
-      <article className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 group-hover:shadow-md group-hover:border-primary/30 group-hover:-translate-y-0.5">
+      <article className="overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 group-hover:shadow-md group-hover:border-primary/20 group-hover:-translate-y-0.5">
         <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
           <Image
             src={image}

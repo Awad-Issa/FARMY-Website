@@ -57,14 +57,14 @@ export function AboutSection() {
         </div>
 
         {/* CTA strip */}
-        <div className="rounded-2xl bg-primary/5 border border-primary/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
+        <div className="rounded-xl bg-primary p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-right">
           <div>
-            <h4 className="text-lg font-bold text-foreground">هل لديك استفسار أو طلب خاص؟</h4>
-            <p className="text-sm text-muted mt-1">فريقنا جاهز للمساعدة وتقديم أفضل الحلول لمزرعتك.</p>
+            <h4 className="text-lg font-bold text-white">هل لديك استفسار أو طلب خاص؟</h4>
+            <p className="text-sm text-white/70 mt-1">فريقنا جاهز للمساعدة وتقديم أفضل الحلول لمزرعتك.</p>
           </div>
           <a
             href="/contact"
-            className="shrink-0 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow hover:bg-primary/90 transition-colors"
+            className="shrink-0 rounded-lg bg-white px-6 py-2.5 text-sm font-semibold text-primary shadow-sm hover:bg-white/90 transition-colors"
           >
             تواصل معنا
           </a>

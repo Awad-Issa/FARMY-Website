@@ -24,26 +24,33 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full transition-all duration-300",
+        "sticky top-0 z-40 w-full transition-all duration-300 border-b",
         isScrolled
-          ? "bg-card/95 shadow-md backdrop-blur-md"
-          : "bg-card/80 backdrop-blur-sm"
+          ? "bg-white/98 shadow-sm backdrop-blur-md border-border"
+          : "bg-white border-transparent"
       )}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex flex-col leading-tight">
-          <span className="text-xl font-bold text-primary">{SITE_NAME}</span>
-          <span className="text-xs text-muted">حلول زراعية وثروة حيوانية</span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-2.5 leading-tight">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white font-bold text-sm shadow-sm">
+            F
+          </div>
+          <div className="flex flex-col leading-tight">
+            <span className="text-base font-bold text-foreground tracking-tight">{SITE_NAME}</span>
+            <span className="text-[10px] text-muted leading-none">حلول زراعية وثروة حيوانية</span>
+          </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm font-medium transition-colors hover:text-primary",
-                pathname === link.href ? "text-primary" : "text-foreground/80"
+                "text-sm font-medium transition-colors hover:text-primary relative py-1",
+                pathname === link.href
+                  ? "text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary after:rounded-full"
+                  : "text-foreground/70"
               )}
             >
               {link.label}
@@ -53,9 +60,9 @@ export function Navbar() {
             href="https://farmy-web.vercel.app/ar"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+            className="flex items-center gap-1.5 rounded-md border border-primary/30 bg-primary/5 px-3 py-1.5 text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-white hover:border-primary"
           >
-            <span className="text-xs">✦</span>
+            <span className="text-[10px]">✦</span>
             نظام الإدارة
           </a>
         </nav>
