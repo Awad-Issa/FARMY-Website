@@ -45,7 +45,7 @@ export async function getFeaturedProducts(limit = 6) {
     () =>
       prisma.product.findMany({
         where: { active: true },
-        include: { category: true },
+        include: { category: true, colors: true },
         orderBy: { createdAt: "desc" },
         take: limit,
       }),
@@ -82,7 +82,7 @@ export async function getProducts(params: {
       () =>
         prisma.product.findMany({
           where,
-          include: { category: true },
+          include: { category: true, colors: true },
           orderBy: { createdAt: "desc" },
           skip,
           take: PRODUCTS_PER_PAGE,

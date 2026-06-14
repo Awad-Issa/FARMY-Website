@@ -55,18 +55,20 @@ export default async function ProductDetailPage({
     .join("\n");
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <nav className="mb-6 text-sm text-muted">
-        <Link href="/products" className="hover:text-primary">
+    <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+      {/* Breadcrumb */}
+      <nav className="mb-8 flex items-center gap-2 text-sm text-muted">
+        <Link href="/products" className="hover:text-primary transition-colors">
           المنتجات
         </Link>
-        <span className="mx-2">/</span>
-        <span>{product.name}</span>
+        <span>/</span>
+        <span className="text-foreground font-medium">{product.name}</span>
       </nav>
 
-      <div className="grid gap-10 lg:grid-cols-2">
-        <div className="space-y-4">
-          <div className="relative aspect-square overflow-hidden rounded-2xl bg-secondary shadow-sm">
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-14">
+        {/* Image section */}
+        <div className="space-y-3">
+          <div className="relative aspect-square overflow-hidden rounded-3xl bg-secondary shadow-md">
             <Image
               src={galleryImages[0]}
               alt={product.name}
@@ -77,7 +79,7 @@ export default async function ProductDetailPage({
             />
           </div>
           {galleryImages.length > 1 && (
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-4 gap-2">
               {galleryImages.slice(1).map((url, index) => (
                 <div
                   key={url}
@@ -88,7 +90,7 @@ export default async function ProductDetailPage({
                     alt={`${product.name} ${index + 2}`}
                     fill
                     className="object-cover"
-                    sizes="120px"
+                    sizes="100px"
                   />
                 </div>
               ))}
@@ -96,25 +98,53 @@ export default async function ProductDetailPage({
           )}
         </div>
 
-        <div>
-          <span className="text-sm font-medium text-accent">
+        {/* Info section */}
+        <div className="flex flex-col gap-6">
+          {/* Category badge */}
+          <span className="inline-flex w-fit items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
             {product.category.name}
           </span>
-          <h1 className="mt-2 text-3xl font-bold text-primary">{product.name}</h1>
-          <p className="mt-6 leading-relaxed text-muted">{product.description}</p>
 
+          {/* Name */}
+          <h1 className="text-3xl font-bold leading-tight text-primary sm:text-4xl">
+            {product.name}
+          </h1>
+
+          {/* Short description — card summary */}
+          {product.shortDescription && (
+            <p className="text-base font-medium leading-relaxed text-foreground border-r-4 border-accent pr-4">
+              {product.shortDescription}
+            </p>
+          )}
+
+          {/* Divider */}
+          <hr className="border-border" />
+
+          {/* Full description */}
+          <div>
+            <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
+              التفاصيل
+            </h2>
+            <p className="whitespace-pre-line leading-loose text-muted">
+              {product.description}
+            </p>
+          </div>
+
+          {/* Colors */}
           {product.colors.length > 0 && (
-            <div className="mt-8">
-              <h2 className="font-semibold text-foreground">الألوان المتاحة</h2>
-              <div className="mt-3 flex flex-wrap gap-3">
+            <div>
+              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">
+                الألوان المتاحة
+              </h2>
+              <div className="flex flex-wrap gap-2">
                 {product.colors.map((color) => (
                   <span
                     key={color.id}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-sm"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm font-medium"
                   >
                     {color.colorCode && (
                       <span
-                        className="h-4 w-4 rounded-full border border-border"
+                        className="h-3.5 w-3.5 rounded-full border border-border/50 shadow-sm"
                         style={{ backgroundColor: color.colorCode }}
                       />
                     )}
@@ -125,26 +155,12 @@ export default async function ProductDetailPage({
             </div>
           )}
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-secondary p-4">
-              <p className="text-xs text-muted">الحد الأدنى للطلب</p>
-              <p className="mt-1 text-lg font-semibold text-primary">
-                {product.minOrderQuantity} قطعة
-              </p>
-            </div>
-            <div className="rounded-xl bg-secondary p-4">
-              <p className="text-xs text-muted">مدة التسليم المتوقعة</p>
-              <p className="mt-1 text-lg font-semibold text-primary">
-                {product.estimatedDeliveryDays} أيام
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10">
+          {/* WhatsApp CTA */}
+          <div className="mt-auto pt-2">
             <WhatsAppButton
               message={whatsappMessage}
               label="استفسر عبر واتساب"
-              className="w-full text-base sm:w-auto"
+              className="w-full justify-center text-base sm:w-auto"
             />
           </div>
         </div>

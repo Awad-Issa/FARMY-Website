@@ -61,6 +61,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
                 shortDescription={product.shortDescription}
                 image={product.image}
                 categoryName={product.category.name}
+                colors={product.colors}
               />
             ))}
           </div>

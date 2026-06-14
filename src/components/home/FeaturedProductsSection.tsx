@@ -22,6 +22,7 @@ export async function FeaturedProductsSection() {
                   shortDescription={product.shortDescription}
                   image={product.image}
                   categoryName={product.category.name}
+                  colors={product.colors}
                 />
               ))}
             </div>

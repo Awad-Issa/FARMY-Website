@@ -66,12 +66,19 @@ export function SectionHeader({ title, subtitle, centered = true }: SectionHeade
   );
 }
 
+type ProductColor = {
+  id: number;
+  name: string;
+  colorCode: string | null;
+};
+
 type ProductCardProps = {
   slug: string;
   name: string;
   shortDescription?: string | null;
   image: string;
   categoryName: string;
+  colors?: ProductColor[];
 };
 
 export function ProductCard({
@@ -80,35 +87,65 @@ export function ProductCard({
   shortDescription,
   image,
   categoryName,
+  colors = [],
 }: ProductCardProps) {
+  const visibleColors = colors.slice(0, 6);
+  const extraColors = colors.length - visibleColors.length;
+
   return (
-    <article className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md hover:border-primary/20">
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
-        <Image
-          src={image}
-          alt={name}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-        <span className="absolute top-3 right-3 rounded-full bg-red-500 text-white text-xs font-bold px-2.5 py-1 shadow">
-          خصم 50%
-        </span>
-      </div>
-      <div className="p-5">
-        <span className="text-xs font-medium text-accent">{categoryName}</span>
-        <h3 className="mt-1 text-lg font-semibold text-foreground">{name}</h3>
-        {shortDescription && (
-          <p className="mt-2 line-clamp-2 text-sm text-muted">{shortDescription}</p>
-        )}
-        <Link
-          href={`/products/${slug}`}
-          className="mt-4 inline-flex text-sm font-medium text-primary hover:underline"
-        >
-          عرض التفاصيل ←
-        </Link>
-      </div>
-    </article>
+    <Link href={`/products/${slug}`} className="group block">
+      <article className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-200 group-hover:shadow-md group-hover:border-primary/30 group-hover:-translate-y-0.5">
+        <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <span className="absolute top-3 right-3 rounded-full bg-red-500 text-white text-xs font-bold px-2.5 py-1 shadow">
+            خصم 50%
+          </span>
+        </div>
+        <div className="p-4">
+          <span className="text-xs font-medium text-accent">{categoryName}</span>
+          <h3 className="mt-1 text-base font-semibold text-foreground leading-snug">{name}</h3>
+          {shortDescription && (
+            <p className="mt-1.5 line-clamp-2 text-sm text-muted">{shortDescription}</p>
+          )}
+
+          {visibleColors.length > 0 && (
+            <div className="mt-3 flex items-center gap-1.5">
+              {visibleColors.map((color) =>
+                color.colorCode ? (
+                  <span
+                    key={color.id}
+                    title={color.name}
+                    className="h-5 w-5 rounded-full border border-border shadow-sm"
+                    style={{ backgroundColor: color.colorCode }}
+                  />
+                ) : (
+                  <span
+                    key={color.id}
+                    className="rounded-full border border-border bg-secondary px-2 py-0.5 text-xs text-muted"
+                  >
+                    {color.name}
+                  </span>
+                )
+              )}
+              {extraColors > 0 && (
+                <span className="text-xs text-muted">+{extraColors}</span>
+              )}
+            </div>
+          )}
+
+          <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+            عرض المنتج
+            <span>←</span>
+          </span>
+        </div>
+      </article>
+    </Link>
   );
 }
 

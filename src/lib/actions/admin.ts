@@ -77,10 +77,8 @@ export async function createProductAction(formData: FormData) {
   const description = String(formData.get("description") ?? "");
   const shortDescription = String(formData.get("shortDescription") ?? "");
   const image = String(formData.get("image") ?? "");
-  const categoryId = Number(formData.get("categoryId"));
-  const minOrderQuantity = Number(formData.get("minOrderQuantity")) || 1;
-  const estimatedDeliveryDays =
-    Number(formData.get("estimatedDeliveryDays")) || 7;
+  const firstCategory = await prisma.category.findFirst({ select: { id: true } });
+  const categoryId = firstCategory?.id ?? 1;
   const active = formData.get("active") === "on";
   const colorsRaw = String(formData.get("colors") ?? "");
 
@@ -101,8 +99,6 @@ export async function createProductAction(formData: FormData) {
       shortDescription: shortDescription || null,
       image,
       categoryId,
-      minOrderQuantity,
-      estimatedDeliveryDays,
       active,
       colors: colors.length ? { create: colors } : undefined,
     },
@@ -120,10 +116,8 @@ export async function updateProductAction(id: number, formData: FormData) {
   const description = String(formData.get("description") ?? "");
   const shortDescription = String(formData.get("shortDescription") ?? "");
   const image = String(formData.get("image") ?? "");
-  const categoryId = Number(formData.get("categoryId"));
-  const minOrderQuantity = Number(formData.get("minOrderQuantity")) || 1;
-  const estimatedDeliveryDays =
-    Number(formData.get("estimatedDeliveryDays")) || 7;
+  const firstCategory = await prisma.category.findFirst({ select: { id: true } });
+  const categoryId = firstCategory?.id ?? 1;
   const active = formData.get("active") === "on";
   const colorsRaw = String(formData.get("colors") ?? "");
 
@@ -145,8 +139,6 @@ export async function updateProductAction(id: number, formData: FormData) {
       shortDescription: shortDescription || null,
       image,
       categoryId,
-      minOrderQuantity,
-      estimatedDeliveryDays,
       active,
       colors: {
         deleteMany: {},
