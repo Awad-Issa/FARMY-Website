@@ -32,9 +32,7 @@ export function Navbar() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 leading-tight">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-white font-bold text-sm shadow-sm">
-            F
-          </div>
+          <img src="/logo.png" alt="FARMY Logo" className="h-10 w-10 object-contain" />
           <div className="flex flex-col leading-tight">
             <span className="text-base font-bold text-foreground tracking-tight">{SITE_NAME}</span>
             <span className="text-[10px] text-muted leading-none">حلول زراعية وثروة حيوانية</span>
