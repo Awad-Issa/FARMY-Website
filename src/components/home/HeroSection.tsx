@@ -7,7 +7,7 @@ export function HeroSection() {
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background image */}
       <Image
-        src="/hero-bg.jpg.webp"
+        src="/hero-bg.webp"
         alt="مزرعة خضراء مع أغنام وأبقار"
         fill
         priority
