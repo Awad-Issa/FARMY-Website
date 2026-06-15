@@ -11,9 +11,10 @@ export function HeroSection() {
         alt="مزرعة خضراء مع أغنام وأبقار"
         fill
         priority
-        quality={75}
+        quality={55}
         className="object-cover object-center"
         sizes="100vw"
+        fetchPriority="high"
       />
 
       {/* Dark overlay with green tint */}
