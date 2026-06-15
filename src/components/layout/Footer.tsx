@@ -14,7 +14,7 @@ export function Footer() {
         <div className="grid gap-10 py-14 md:grid-cols-3 border-b border-white/10">
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <img src="/logo.png" alt="FARMY Logo" className="h-9 w-9 object-contain" />
+              <img src="/logo.webp" alt="FARMY Logo" className="h-9 w-9 object-contain" />
               <span className="text-lg font-bold tracking-tight">{SITE_NAME}</span>
             </div>
             <p className="text-sm text-white/60 leading-relaxed">
