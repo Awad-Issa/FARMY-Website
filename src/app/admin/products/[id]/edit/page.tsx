@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { getAllCategories, getProductById } from "@/lib/services/catalog";
 import { updateProductAction } from "@/lib/actions/admin";
 import { ProductForm } from "@/components/admin/ProductForm";
+import { requireAdminSession } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,7 @@ type EditProductPageProps = {
 };
 
 export default async function EditProductPage({ params }: EditProductPageProps) {
+  await requireAdminSession();
   const { id } = await params;
   const [product, categories] = await Promise.all([
     getProductById(Number(id)),
@@ -18,7 +20,7 @@ export default async function EditProductPage({ params }: EditProductPageProps) 
 
   if (!product) notFound();
 
-  const action = updateProductAction.bind(null, product.id);
+  const action = updateProductAction.bind(null, product.id) as (formData: FormData) => Promise<{ error: string } | void>;
   const colorsValue = product.colors
     .map((c) => (c.colorCode ? `${c.name}|${c.colorCode}` : c.name))
     .join("\n");
