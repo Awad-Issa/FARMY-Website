@@ -72,7 +72,7 @@ export function SoftwareBanner() {
                 ←
               </span>
             </a>
-            <span className="text-xs text-white/30">
+            <span className="text-xs text-white/60">
               farmy-web.vercel.app
             </span>
           </div>

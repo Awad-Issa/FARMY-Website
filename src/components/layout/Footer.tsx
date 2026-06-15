@@ -58,7 +58,7 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/40">
+        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/60">
           <span>© {new Date().getFullYear()} {SITE_NAME}. جميع الحقوق محفوظة.</span>
           <span>منتجات TPU عالية الجودة</span>
         </div>

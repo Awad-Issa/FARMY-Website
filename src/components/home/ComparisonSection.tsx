@@ -28,11 +28,11 @@ export function ComparisonSection() {
               </div>
               <div className="grid grid-cols-2 divide-x divide-x-reverse divide-border">
                 <div className="p-3 text-center">
-                  <div className="mb-1 text-xs font-bold text-emerald-600">✅ TPU</div>
+                  <div className="mb-1 text-xs font-bold text-emerald-700">✅ TPU</div>
                   <p className="text-xs text-foreground leading-relaxed">{row.tpu}</p>
                 </div>
                 <div className="p-3 text-center">
-                  <div className="mb-1 text-xs font-bold text-red-500">❌ بلاستيك عادي</div>
+                  <div className="mb-1 text-xs font-bold text-red-700">❌ بلاستيك عادي</div>
                   <p className="text-xs text-muted leading-relaxed">{row.plastic}</p>
                 </div>
               </div>

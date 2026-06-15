@@ -28,7 +28,6 @@ export default async function RootLayout({
     <html lang="ar" dir="rtl" className={`${arabicFont.variable} h-full`}>
       <head>
         <link rel="preload" as="image" href="/hero-bg.avif" type="image/avif" fetchPriority="high" />
-        <link rel="preload" as="image" href="/hero-bg.webp" type="image/webp" fetchPriority="high" />
       </head>
       <body className="min-h-full flex flex-col antialiased">
         <div className="bg-primary-dark text-white text-center py-2 px-4 text-sm font-semibold tracking-wide">
