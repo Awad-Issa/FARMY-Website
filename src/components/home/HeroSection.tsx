@@ -1,22 +1,16 @@
-import Image from "next/image";
 import { Button } from "@/components/ui";
 import { WhatsAppButton } from "@/components/whatsapp/WhatsAppButton";
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background image */}
-      <Image
-        src="/hero-bg.webp"
-        alt="مزرعة خضراء مع أغنام وأبقار"
-        fill
-        priority
-        quality={55}
-        className="object-cover object-center"
-        sizes="100vw"
-        fetchPriority="high"
-      />
-
+    <section
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{
+        backgroundImage: "url('/hero-bg.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       {/* Dark overlay with green tint */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
       <div className="absolute inset-0 bg-green-950/30" />
