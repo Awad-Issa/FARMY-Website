@@ -1,7 +1,11 @@
 import { createCategoryAction } from "@/lib/actions/admin";
 import { CategoryForm } from "@/components/admin/CategoryForm";
+import { requireAdminSession } from "@/lib/auth";
 
-export default function NewCategoryPage() {
+export const dynamic = "force-dynamic";
+
+export default async function NewCategoryPage() {
+  await requireAdminSession();
   return (
     <div>
       <h1 className="text-2xl font-bold text-primary">إضافة فئة</h1>

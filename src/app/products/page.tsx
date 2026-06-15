@@ -67,28 +67,61 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           </div>
 
           {totalPages > 1 && (
-            <div className="mt-10 flex items-center justify-center gap-2">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (pageNum) => (
-                  <Link
-                    key={pageNum}
-                    href={{
-                      pathname: "/products",
-                      query: {
-                        ...(search ? { search } : {}),
-                        ...(categorySlug ? { category: categorySlug } : {}),
-                        page: pageNum.toString(),
-                      },
-                    }}
-                    className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                      pageNum === currentPage
-                        ? "bg-primary text-white"
-                        : "bg-card text-foreground hover:bg-secondary"
-                    }`}
-                  >
-                    {pageNum}
-                  </Link>
-                )
+            <div className="mt-10 flex items-center justify-center gap-1">
+              {/* Previous */}
+              {currentPage > 1 && (
+                <Link
+                  href={{ pathname: "/products", query: { ...(search ? { search } : {}), ...(categorySlug ? { category: categorySlug } : {}), page: (currentPage - 1).toString() } }}
+                  className="rounded-lg px-3 py-2 text-sm font-medium bg-card text-foreground hover:bg-secondary transition-colors"
+                >
+                  ›
+                </Link>
+              )}
+
+              {/* Page numbers with ellipsis */}
+              {(() => {
+                const pages: (number | "...")[] = [];
+                const delta = 2;
+                const left = currentPage - delta;
+                const right = currentPage + delta;
+
+                for (let i = 1; i <= totalPages; i++) {
+                  if (i === 1 || i === totalPages || (i >= left && i <= right)) {
+                    pages.push(i);
+                  } else if (pages[pages.length - 1] !== "...") {
+                    pages.push("...");
+                  }
+                }
+
+                return pages.map((p, idx) =>
+                  p === "..." ? (
+                    <span key={`ellipsis-${idx}`} className="px-2 py-2 text-sm text-muted select-none">
+                      …
+                    </span>
+                  ) : (
+                    <Link
+                      key={p}
+                      href={{ pathname: "/products", query: { ...(search ? { search } : {}), ...(categorySlug ? { category: categorySlug } : {}), page: p.toString() } }}
+                      className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                        p === currentPage
+                          ? "bg-primary text-white"
+                          : "bg-card text-foreground hover:bg-secondary"
+                      }`}
+                    >
+                      {p}
+                    </Link>
+                  )
+                );
+              })()}
+
+              {/* Next */}
+              {currentPage < totalPages && (
+                <Link
+                  href={{ pathname: "/products", query: { ...(search ? { search } : {}), ...(categorySlug ? { category: categorySlug } : {}), page: (currentPage + 1).toString() } }}
+                  className="rounded-lg px-3 py-2 text-sm font-medium bg-card text-foreground hover:bg-secondary transition-colors"
+                >
+                  ‹
+                </Link>
               )}
             </div>
           )}

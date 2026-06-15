@@ -1,3 +1,6 @@
+"use client";
+
+import { useActionState } from "react";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
 
 type Category = {
@@ -9,14 +12,26 @@ type Category = {
   active: boolean;
 };
 
+type ActionResult = { error: string } | void;
+
 type CategoryFormProps = {
-  action: (formData: FormData) => Promise<void>;
+  action: (formData: FormData) => Promise<ActionResult>;
   category?: Category;
 };
 
 export function CategoryForm({ action, category }: CategoryFormProps) {
+  const [state, formAction, pending] = useActionState(
+    async (_prev: ActionResult, formData: FormData) => action(formData),
+    undefined
+  );
+
   return (
-    <form action={action} className="space-y-5 rounded-2xl bg-card p-6 shadow-sm">
+    <form action={formAction} className="space-y-5 rounded-2xl bg-card p-6 shadow-sm">
+      {state != null && typeof state === "object" && "error" in state && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {state.error}
+        </div>
+      )}
       <div>
         <label className="mb-1 block text-sm font-medium">الاسم</label>
         <input
@@ -56,9 +71,10 @@ export function CategoryForm({ action, category }: CategoryFormProps) {
       </label>
       <button
         type="submit"
-        className="rounded-xl bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-light"
+        disabled={pending}
+        className="rounded-xl bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-light disabled:opacity-60"
       >
-        حفظ
+        {pending ? "جاري الحفظ..." : "حفظ"}
       </button>
     </form>
   );

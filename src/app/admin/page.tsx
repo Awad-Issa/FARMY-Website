@@ -12,18 +12,20 @@ export default async function AdminDashboardPage() {
       <p className="mt-2 text-muted">مرحباً بك في لوحة إدارة FARMY</p>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2">
-        <div className="rounded-2xl bg-card p-6 shadow-sm">
+        <Link href="/admin/products" className="rounded-2xl bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
           <p className="text-sm text-muted">إجمالي المنتجات</p>
           <p className="mt-2 text-3xl font-bold text-primary">
             {stats.totalProducts}
           </p>
-        </div>
-        <div className="rounded-2xl bg-card p-6 shadow-sm">
+          <p className="mt-3 text-xs text-primary">عرض المنتجات ←</p>
+        </Link>
+        <Link href="/admin/categories" className="rounded-2xl bg-card p-6 shadow-sm hover:shadow-md transition-shadow">
           <p className="text-sm text-muted">إجمالي الفئات</p>
           <p className="mt-2 text-3xl font-bold text-primary">
             {stats.totalCategories}
           </p>
-        </div>
+          <p className="mt-3 text-xs text-primary">عرض الفئات ←</p>
+        </Link>
       </div>
 
       <div className="mt-8 flex flex-wrap gap-3">

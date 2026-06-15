@@ -7,7 +7,14 @@ const SESSION_COOKIE = "farmy_admin_session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 function getSessionSecret(): string {
-  return process.env.ADMIN_SESSION_SECRET ?? "dev-secret-change-in-production";
+  const secret = process.env.ADMIN_SESSION_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error("ADMIN_SESSION_SECRET environment variable is required in production");
+    }
+    return "dev-secret-change-in-production";
+  }
+  return secret;
 }
 
 function signPayload(payload: string): string {

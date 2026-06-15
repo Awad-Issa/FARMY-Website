@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAllProductsForAdmin } from "@/lib/services/catalog";
 import { deleteProductAction } from "@/lib/actions/admin";
 
@@ -32,7 +33,22 @@ export default async function AdminProductsPage() {
           <tbody>
             {products.map((product) => (
               <tr key={product.id} className="border-b border-border/60">
-                <td className="p-4">{product.name}</td>
+                <td className="p-4">
+                  <div className="flex items-center gap-3">
+                    {product.image ? (
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={40}
+                        height={40}
+                        className="rounded-lg object-cover"
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-lg bg-border" />
+                    )}
+                    <span>{product.name}</span>
+                  </div>
+                </td>
                 <td className="p-4">{product.category.name}</td>
                 <td className="p-4">
                   {product.active ? (

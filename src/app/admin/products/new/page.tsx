@@ -1,10 +1,12 @@
 import { getAllCategories } from "@/lib/services/catalog";
 import { createProductAction } from "@/lib/actions/admin";
 import { ProductForm } from "@/components/admin/ProductForm";
+import { requireAdminSession } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function NewProductPage() {
+  await requireAdminSession();
   const categories = await getAllCategories();
 
   return (
