@@ -104,7 +104,7 @@ export function ProductCard({
             sizes="(max-width: 768px) 100vw, 33vw"
           />
           <span className="absolute top-3 right-3 rounded-full bg-red-500 text-white text-xs font-bold px-2.5 py-1 shadow">
-            خصم 50%
+            خصم حتى 50%
           </span>
         </div>
         <div className="p-4">

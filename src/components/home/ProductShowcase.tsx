@@ -25,7 +25,7 @@ export function ProductShowcase({ products }: Props) {
       {/* Promo Bar */}
       <div className="bg-primary px-4 py-2.5 text-center">
         <span className="text-sm font-bold text-white">
-          🎉 عرض الإطلاق — خصم 50% على جميع المنتجات!
+          🎉 عرض الإطلاق — خصم حتى 50% على جميع المنتجات!
         </span>
       </div>
 

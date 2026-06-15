@@ -31,7 +31,7 @@ export function HeroSection() {
 
         <div className="rounded-md bg-amber-500/20 border border-amber-400/40 backdrop-blur-sm px-5 py-2.5 flex items-center gap-2">
           <span className="text-amber-400 text-sm">🔥</span>
-          <span className="text-sm font-bold text-amber-300 tracking-wide">عرض الإطلاق — خصم 50% على جميع المنتجات</span>
+          <span className="text-sm font-bold text-amber-300 tracking-wide">عرض الإطلاق — خصم حتى 50% على جميع المنتجات</span>
         </div>
 
         <h1 className="max-w-3xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl drop-shadow-lg">
