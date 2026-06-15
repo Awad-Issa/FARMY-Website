@@ -35,9 +35,13 @@ export async function createCategoryAction(formData: FormData) {
   const description = String(formData.get("description") ?? "");
   const active = formData.get("active") === "on";
 
-  await prisma.category.create({
-    data: { name, slug, image, description, active },
-  });
+  try {
+    await prisma.category.create({
+      data: { name, slug, image, description, active },
+    });
+  } catch {
+    return { error: "فشل إنشاء الفئة. تأكد من أن الاسم والرابط غير مكررين." };
+  }
 
   revalidatePath("/");
   revalidatePath("/products");
@@ -52,10 +56,14 @@ export async function updateCategoryAction(id: number, formData: FormData) {
   const description = String(formData.get("description") ?? "");
   const active = formData.get("active") === "on";
 
-  await prisma.category.update({
-    where: { id },
-    data: { name, slug, image, description, active },
-  });
+  try {
+    await prisma.category.update({
+      where: { id },
+      data: { name, slug, image, description, active },
+    });
+  } catch {
+    return { error: "فشل تحديث الفئة. تأكد من أن الرابط غير مكرر." };
+  }
 
   revalidatePath("/");
   revalidatePath("/products");
@@ -64,10 +72,14 @@ export async function updateCategoryAction(id: number, formData: FormData) {
 }
 
 export async function deleteCategoryAction(id: number) {
-  await prisma.category.delete({ where: { id } });
-  revalidatePath("/");
-  revalidatePath("/products");
-  revalidatePath("/admin/categories");
+  try {
+    await prisma.category.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/products");
+    revalidatePath("/admin/categories");
+  } catch (err) {
+    console.error("Failed to delete category:", err);
+  }
   redirect("/admin/categories");
 }
 
@@ -78,7 +90,7 @@ export async function createProductAction(formData: FormData) {
   const shortDescription = String(formData.get("shortDescription") ?? "");
   const image = String(formData.get("image") ?? "");
   const categoryIdRaw = Number(formData.get("categoryId"));
-  const categoryId = categoryIdRaw || (await prisma.category.findFirst({ select: { id: true } }))?.id ?? 1;
+  const categoryId = categoryIdRaw || ((await prisma.category.findFirst({ select: { id: true } }))?.id ?? 1);
   const active = formData.get("active") === "on";
   const colorsRaw = String(formData.get("colors") ?? "");
 
@@ -91,18 +103,22 @@ export async function createProductAction(formData: FormData) {
       return { name: namePart, colorCode: colorCode || null };
     });
 
-  await prisma.product.create({
-    data: {
-      name,
-      slug,
-      description,
-      shortDescription: shortDescription || null,
-      image,
-      categoryId,
-      active,
-      colors: colors.length ? { create: colors } : undefined,
-    },
-  });
+  try {
+    await prisma.product.create({
+      data: {
+        name,
+        slug,
+        description,
+        shortDescription: shortDescription || null,
+        image,
+        categoryId,
+        active,
+        colors: colors.length ? { create: colors } : undefined,
+      },
+    });
+  } catch {
+    return { error: "فشل إنشاء المنتج. تأكد من أن الاسم والرابط غير مكررين." };
+  }
 
   revalidatePath("/");
   revalidatePath("/products");
@@ -117,7 +133,7 @@ export async function updateProductAction(id: number, formData: FormData) {
   const shortDescription = String(formData.get("shortDescription") ?? "");
   const image = String(formData.get("image") ?? "");
   const categoryIdRaw = Number(formData.get("categoryId"));
-  const categoryId = categoryIdRaw || (await prisma.category.findFirst({ select: { id: true } }))?.id ?? 1;
+  const categoryId = categoryIdRaw || ((await prisma.category.findFirst({ select: { id: true } }))?.id ?? 1);
   const active = formData.get("active") === "on";
   const colorsRaw = String(formData.get("colors") ?? "");
 
@@ -130,22 +146,26 @@ export async function updateProductAction(id: number, formData: FormData) {
       return { name: namePart, colorCode: colorCode || null };
     });
 
-  await prisma.product.update({
-    where: { id },
-    data: {
-      name,
-      slug,
-      description,
-      shortDescription: shortDescription || null,
-      image,
-      categoryId,
-      active,
-      colors: {
-        deleteMany: {},
-        create: colors,
+  try {
+    await prisma.product.update({
+      where: { id },
+      data: {
+        name,
+        slug,
+        description,
+        shortDescription: shortDescription || null,
+        image,
+        categoryId,
+        active,
+        colors: {
+          deleteMany: {},
+          create: colors,
+        },
       },
-    },
-  });
+    });
+  } catch {
+    return { error: "فشل تحديث المنتج. تأكد من أن الرابط غير مكرر." };
+  }
 
   revalidatePath("/");
   revalidatePath("/products");
@@ -155,9 +175,13 @@ export async function updateProductAction(id: number, formData: FormData) {
 }
 
 export async function deleteProductAction(id: number) {
-  await prisma.product.delete({ where: { id } });
-  revalidatePath("/");
-  revalidatePath("/products");
-  revalidatePath("/admin/products");
+  try {
+    await prisma.product.delete({ where: { id } });
+    revalidatePath("/");
+    revalidatePath("/products");
+    revalidatePath("/admin/products");
+  } catch (err) {
+    console.error("Failed to delete product:", err);
+  }
   redirect("/admin/products");
 }
