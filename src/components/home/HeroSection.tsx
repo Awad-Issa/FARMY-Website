@@ -6,7 +6,7 @@ export function HeroSection() {
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{
-        backgroundImage: "url('/hero-bg.webp')",
+        backgroundImage: "image-set(url('/hero-bg.avif') type('image/avif'), url('/hero-bg.webp') type('image/webp'))",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

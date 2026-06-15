@@ -23,7 +23,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-white/90 uppercase tracking-widest">روابط سريعة</h4>
+            <h3 className="mb-4 text-sm font-semibold text-white/90 uppercase tracking-widest">روابط سريعة</h3>
             <ul className="space-y-2.5 text-sm text-white/60">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold text-white/90 uppercase tracking-widest">تواصل معنا</h4>
+            <h3 className="mb-4 text-sm font-semibold text-white/90 uppercase tracking-widest">تواصل معنا</h3>
             <ul className="space-y-2.5 text-sm text-white/60">
               <li>
                 <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white transition-colors">

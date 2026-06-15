@@ -107,7 +107,7 @@ export function ProductCard({
             placeholder="blur"
             blurDataURL={BLUR_PLACEHOLDER}
           />
-          <span className="absolute top-3 right-3 rounded-full bg-red-500 text-white text-xs font-bold px-2.5 py-1 shadow">
+          <span className="absolute top-3 right-3 rounded-full bg-red-700 text-white text-xs font-bold px-2.5 py-1 shadow">
             خصم حتى 50%
           </span>
         </div>
