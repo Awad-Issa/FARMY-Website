@@ -2,6 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
+const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAAGklEQVQI12P4z8BQDwADhQGAWjR9awAAAABJRU5ErkJggg==";
+
 type ButtonProps = {
   href?: string;
   children: React.ReactNode;
@@ -102,6 +104,8 @@ export function ProductCard({
             fill
             className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
+            placeholder="blur"
+            blurDataURL={BLUR_PLACEHOLDER}
           />
           <span className="absolute top-3 right-3 rounded-full bg-red-500 text-white text-xs font-bold px-2.5 py-1 shadow">
             خصم حتى 50%
@@ -173,6 +177,8 @@ export function CategoryCard({
           fill
           className="object-contain p-2 transition-transform duration-300 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+          placeholder="blur"
+          blurDataURL={BLUR_PLACEHOLDER}
         />
         {comingSoon && (
           <span className="absolute left-3 top-3 rounded-full bg-accent px-3 py-1 text-xs font-medium text-white">

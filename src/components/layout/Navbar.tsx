@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
@@ -49,7 +50,7 @@ export function Navbar({ categories = [] }: { categories?: Category[] }) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5 leading-tight">
-          <img src="/logo.png" alt="FARMY Logo" className="h-10 w-10 object-contain" />
+          <Image src="/logo.png" alt="FARMY Logo" width={40} height={40} className="object-contain" priority />
           <div className="flex flex-col leading-tight">
             <span className="text-base font-bold text-foreground tracking-tight">{SITE_NAME}</span>
             <span className="text-[10px] text-muted leading-none">حلول زراعية وثروة حيوانية</span>

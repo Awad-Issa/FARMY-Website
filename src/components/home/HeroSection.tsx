@@ -38,6 +38,9 @@ export function HeroSection() {
           حلول ذكية للثروة الحيوانية{" "}
           <span className="text-green-400">والزراعة</span>
         </h1>
+        <p className="text-2xl font-extrabold text-white tracking-wide drop-shadow-lg">
+          🛒 جملة ومفرق
+        </p>
         <p className="max-w-xl text-base text-white/80 md:text-lg leading-relaxed drop-shadow">
           نوفر منتجات عالية الجودة للمزارع ومربي الأغنام والأبقار مع إمكانية
           التخصيص والطباعة حسب الطلب.
